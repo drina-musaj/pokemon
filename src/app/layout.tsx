@@ -39,22 +39,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html>
-      <body>
-        <header className='bg-white border-b border-gray-200'>
-          <div className='max-w-screen-lg mx-auto px-4 py-4'>
-            <div className='flex items-center gap-4'>
+return (
+  <html>
+    <body>
+      <header className='bg-white border-b border-gray-200'>
+        <div className='max-w-screen-lg mx-auto px-4 py-4'>
+          <div className='flex items-center gap-4'>
+            <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
               <Logo className='w-16' />
+            </a>
+            <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
               <h1 className='text-2xl font-bold'>Pokemon</h1>
-            </div>
+            </a>
           </div>
-        </header>
-        
-        <main className='bg-white max-w-screen-lg mx-auto'>
-          {children}
-        </main>
-      </body>
-    </html>
-  );
+        </div>
+      </header>
+      
+      <main className='bg-white max-w-screen-lg mx-auto'>
+        {children}
+      </main>
+    </body>
+  </html>
+);
 }
