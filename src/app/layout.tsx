@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import * as React from 'react';
 
 import '@/styles/globals.css';
-
+import Logo from '~/svg/pokemon-logo.svg';
 
 import { siteConfig } from '@/constant/config';
 
@@ -41,7 +41,20 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <header className='bg-white border-b border-gray-200'>
+          <div className='max-w-screen-lg mx-auto px-4 py-4'>
+            <div className='flex items-center gap-4'>
+              <Logo className='w-16' />
+              <h1 className='text-2xl font-bold'>Pokemon</h1>
+            </div>
+          </div>
+        </header>
+        
+        <main className='bg-white max-w-screen-lg mx-auto'>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
