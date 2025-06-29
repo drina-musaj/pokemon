@@ -1,34 +1,42 @@
-import { getPokemon } from "@/lib/pokemonAPI";
+import { getPokemon, getPokemonSpecies, getEvolutionChain } from "@/lib/pokemonAPI";
 import { PokemonImage } from "@/components/ui/PokemonImage";
-import LinearProgress, {
-  linearProgressClasses,
-} from "@mui/material/LinearProgress";
+import { PokemonData } from "@/types/pokemonTypes";
+import StatProgressBar from "@/components/ui/StatProgressBar";
 
-export default async function PokemonDetails({
-  params,
-}: {
-  params: { pokemonName: string };
-}) {
+const typeGradients: Record<string, string> = {
+  fire: "from-red-400 via-orange-400 to-yellow-400",
+  water: "from-blue-400 via-cyan-400 to-blue-300",
+  grass: "from-green-400 via-lime-400 to-green-300",
+  poison: "from-purple-500 via-purple-400 to-pink-400",
+  flying: "from-blue-300 via-indigo-300 to-purple-300",
+  bug: "from-green-500 via-lime-500 to-green-400",
+  normal: "from-gray-300 via-gray-200 to-gray-300",
+};
+
+export default async function PokemonDetails({ params }: { params: { pokemonName: string } }) {
   const { pokemonName } = params;
-  const pokemonObject = await getPokemon(pokemonName);
+  const pokemonObject: PokemonData = await getPokemon(pokemonName);
 
-  console.log(pokemonObject);
+  const pokemonSpecies = await getPokemonSpecies(pokemonObject.species.url);
 
-  const primaryType = pokemonObject.types[0]?.type.name || "normal";
+  const evolutionChain = await getEvolutionChain(pokemonSpecies.evolution_chain.url);
 
-  const typeGradients = {
-    fire: "from-red-400 via-orange-400 to-yellow-400",
-    water: "from-blue-400 via-cyan-400 to-blue-300",
-    grass: "from-green-400 via-lime-400 to-green-300",
-    poison: "from-purple-500 via-purple-400 to-pink-400",
-    flying: "from-blue-300 via-indigo-300 to-purple-300",
-    bug: "from-green-500 via-lime-500 to-green-400",
-    normal: "from-gray-300 via-gray-200 to-gray-300",
+  const getEvolutionNames = (chain: any): string[] => {
+    const evolutionNames: string[] = [];
+    let current = chain;
+
+    while (current) {
+      evolutionNames.push(current.species.name);
+      current = current.evolves_to[0];
+    }
+
+    return evolutionNames;
   };
 
-  const cardGradient =
-    typeGradients[primaryType as keyof typeof typeGradients] ||
-    typeGradients.normal;
+  const evolutionNames = getEvolutionNames(evolutionChain);
+
+  const primaryType = pokemonObject.types[0]?.type.name || "normal";
+  const cardGradient = typeGradients[primaryType] || typeGradients.normal;
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
@@ -44,14 +52,14 @@ export default async function PokemonDetails({
               <div className="text-sm text-gray-600">HP</div>
               <div className="text-2xl font-bold text-red-600">
                 {pokemonObject.stats.find(
-                  (stat: any) => stat.stat.name === "hp",
+                  (stat) => stat.stat.name === "hp"
                 )?.base_stat || 0}
               </div>
             </div>
           </div>
 
           <div className="flex gap-2 mb-3">
-            {pokemonObject.types.map((typeInfo: any) => (
+            {pokemonObject.types.map((typeInfo) => (
               <span
                 key={typeInfo.type.name}
                 className="px-3 py-1 rounded-full text-sm font-semibold bg-gray-700 text-white capitalize"
@@ -74,10 +82,23 @@ export default async function PokemonDetails({
 
         <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-4 mb-4 shadow-lg border border-white border-opacity-20">
           <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">
+            Evolution Chain
+          </h2>
+          <div className="flex justify-center gap-4">
+            {evolutionNames.map((evolutionName) => (
+              <div key={evolutionName} className="flex flex-col items-center">
+                <span className="text-sm text-gray-800 capitalize">{evolutionName}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-4 mb-4 shadow-lg border border-white border-opacity-20">
+          <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">
             Base Stats
           </h2>
           <div className="space-y-3">
-            {pokemonObject.stats.map((statObject: any) => {
+            {pokemonObject.stats.map((statObject) => {
               const statName = statObject.stat.name;
               const statValue = statObject.base_stat;
 
@@ -90,26 +111,7 @@ export default async function PokemonDetails({
                     {statValue}
                   </div>
                   <div className="flex-1">
-                    <LinearProgress
-                      variant="determinate"
-                      value={(statValue / 252) * 100}
-                      sx={{
-                        height: 8,
-                        borderRadius: 4,
-                        [`&.${linearProgressClasses.colorPrimary}`]: {
-                          backgroundColor: "rgba(0, 0, 0, 0.1)",
-                        },
-                        [`& .${linearProgressClasses.bar}`]: {
-                          borderRadius: 4,
-                          backgroundColor:
-                            statValue > 100
-                              ? "#ef4444"
-                              : statValue > 70
-                                ? "#f59e0b"
-                                : "#10b981",
-                        },
-                      }}
-                    />
+                    <StatProgressBar statValue={statValue} />
                   </div>
                 </div>
               );

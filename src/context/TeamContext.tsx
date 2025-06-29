@@ -1,23 +1,23 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { CompletePokemonData } from "@/types/pokemonTypes";
+import { PokemonData } from "@/types/pokemonTypes";
 
 type TeamContextType = {
-  team: CompletePokemonData[];
-  toggleTeam: (pokemon: CompletePokemonData) => void;
-  isInTeam: (pokemon: CompletePokemonData) => boolean;
+  team: PokemonData[];
+  toggleTeam: (pokemon: PokemonData) => void;
+  isInTeam: (pokemon: PokemonData) => boolean;
 };
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);
 
 export const TeamProvider = ({ children }: { children: ReactNode }) => {
-  const [team, setTeam] = useState<CompletePokemonData[]>([]);
+  const [team, setTeam] = useState<PokemonData[]>([]);
 
-  const isInTeam = (pokemon: CompletePokemonData) =>
+  const isInTeam = (pokemon: PokemonData) =>
     team.some((p) => p.name === pokemon.name);
 
-  const toggleTeam = (pokemon: CompletePokemonData) => {
+  const toggleTeam = (pokemon: PokemonData) => {
     setTeam((prev) =>
       isInTeam(pokemon)
         ? prev.filter((p) => p.name !== pokemon.name)

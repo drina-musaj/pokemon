@@ -3,16 +3,16 @@
 import { useState } from "react";
 import SearchBar from "@/components/buttons/SearchBar";
 import { PokemonCard } from "./pokemon-card";
-import { CompletePokemonData } from "@/types/pokemonTypes";
+import { PokemonData } from "@/types/pokemonTypes";
 
 interface PokemonGridProps {
-  pokemonList: CompletePokemonData[];
+  pokemonList: PokemonData[];
 }
 
 export function PokemonGrid({ pokemonList }: PokemonGridProps) {
   const [searchText, setSearchText] = useState("");
 
- const searchFilter = (pokemonList: CompletePokemonData[]) => {
+ const searchFilter = (pokemonList: PokemonData[]) => {
   const searchLower = searchText.toLowerCase().trim();
   const searchAsNumber = Number(searchText);
 
@@ -35,7 +35,7 @@ export function PokemonGrid({ pokemonList }: PokemonGridProps) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-        {filteredPokemonList.map((pokemon: CompletePokemonData) => {
+        {filteredPokemonList.map((pokemon: PokemonData) => {
           return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
         })}
       </div>
