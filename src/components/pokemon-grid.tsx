@@ -14,7 +14,7 @@ export function PokemonGrid({ pokemonList }: PokemonGridProps) {
 
   const searchFilter = (pokemonList: CompletePokemonData[]) => {
     return pokemonList.filter((pokemon: CompletePokemonData) =>
-      pokemon.name.toLowerCase().includes(searchText.toLowerCase())
+      pokemon.name.toLowerCase().includes(searchText.toLowerCase()),
     );
   };
 

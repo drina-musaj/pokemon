@@ -20,11 +20,11 @@ export interface CompletePokemonData {
 }
 
 export interface PokemonGridProps {
-  pokemonList: CompletePokemonData[]; 
+  pokemonList: CompletePokemonData[];
 }
 
 export interface PokemonCardProps {
-  pokemon: CompletePokemonData; 
+  pokemon: CompletePokemonData;
 }
 
 export interface PokemonData {

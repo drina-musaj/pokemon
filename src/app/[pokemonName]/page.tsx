@@ -44,7 +44,7 @@ export default async function PokemonDetails({
               <div className="text-sm text-gray-600">HP</div>
               <div className="text-2xl font-bold text-red-600">
                 {pokemonObject.stats.find(
-                  (stat: any) => stat.stat.name === "hp"
+                  (stat: any) => stat.stat.name === "hp",
                 )?.base_stat || 0}
               </div>
             </div>

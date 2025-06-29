@@ -1,5 +1,4 @@
 export const siteConfig = {
-  title: 'Pokemon',
-  description:
-    'Your pokemon post',
+  title: "Pokemon",
+  description: "Your pokemon post",
 };
