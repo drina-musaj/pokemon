@@ -1,1 +1,19 @@
+# macOS
+.DS_Store
+
+# Next.js build output
+.next/
+out/
+
+# Optional: if using TypeScript
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Codegen (if using GraphQL)
+codegen.yml
+generated/
 node_modules
