@@ -1,9 +1,11 @@
 export interface PokemonListItem {
   name: string;
   url: string;
+
 }
 
 export interface CompletePokemonData {
+  id:number;
   name: string;
   sprites: {
     other: {

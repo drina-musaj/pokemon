@@ -16,6 +16,7 @@ export async function getPokemonList() {
       pokemonList.map(async (pokemon: { name: string; url: string }) => {
         const pokemonData = await getPokemon(pokemon.name);
         return {
+          id: pokemonData.id,
           name: pokemon.name,
           sprites: pokemonData.sprites,
           types: pokemonData.types,

@@ -12,13 +12,21 @@ interface PokemonGridProps {
 export function PokemonGrid({ pokemonList }: PokemonGridProps) {
   const [searchText, setSearchText] = useState("");
 
-  const searchFilter = (pokemonList: CompletePokemonData[]) => {
-    return pokemonList.filter((pokemon: CompletePokemonData) =>
-      pokemon.name.toLowerCase().includes(searchText.toLowerCase()),
-    );
-  };
+ const searchFilter = (pokemonList: CompletePokemonData[]) => {
+  const searchLower = searchText.toLowerCase().trim();
+  const searchAsNumber = Number(searchText);
+
+  return pokemonList.filter((pokemon) => {
+    const matchesId = !isNaN(searchAsNumber) && pokemon.id === searchAsNumber;
+    const matchesName = pokemon.name.toLowerCase().includes(searchLower);
+
+    return matchesId || matchesName;
+  });
+};
 
   const filteredPokemonList = searchFilter(pokemonList);
+
+  console.log(filteredPokemonList)
 
   return (
     <div>

@@ -40,7 +40,7 @@ const SearchBar = ({ searchText, setSearchText }: SearchBarProps) => {
       </button>
       <input
         className="input rounded-full px-8 py-3 border-2 border-transparent focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md"
-        placeholder="Pikachu, 25 ..."
+        placeholder="Charmander, 4 ..."
         type="text"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
