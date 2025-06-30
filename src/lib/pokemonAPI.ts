@@ -12,26 +12,26 @@ export async function getPokemon(name: string) {
 export async function getEvolutionChain(url: string) {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error('Failed to fetch evolution chain');
+    throw new Error("Failed to fetch evolution chain");
   }
   const data = await response.json();
-  return data.chain; 
+  return data.chain;
 }
 
 export async function getPokemonSpecies(url: string) {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error('Failed to fetch Pokemon species');
+    throw new Error("Failed to fetch Pokemon species");
   }
   const data = await response.json();
-  return data; 
+  return data;
 }
 
 export async function getPokemonList() {
   try {
     const response = await fetch(POKEMON_API + "pokemon?limit=20&offset=0");
     if (!response.ok) {
-      throw new Error('Failed to fetch Pokemon list');
+      throw new Error("Failed to fetch Pokemon list");
     }
     const data = await response.json();
     const pokemonList = data.results;
@@ -51,7 +51,7 @@ export async function getPokemonList() {
         };
       }),
     );
-    
+
     return pokemonData;
   } catch (error) {
     console.error("Oh no! The Poké Ball failed. Try again!", error);

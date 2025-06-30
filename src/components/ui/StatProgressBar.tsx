@@ -8,7 +8,7 @@ const StatProgressBar = ({ statValue }: StatProgressBarProps) => {
   return (
     <LinearProgress
       variant="determinate"
-      value={(statValue / 252) * 100} 
+      value={(statValue / 252) * 100}
       sx={{
         height: 8,
         borderRadius: 4,
@@ -17,7 +17,7 @@ const StatProgressBar = ({ statValue }: StatProgressBarProps) => {
         },
         [`& .${linearProgressClasses.bar}`]: {
           borderRadius: 4,
-          backgroundColor:"oklch(37.3% 0.034 259.733)"
+          backgroundColor: "oklch(37.3% 0.034 259.733)",
         },
       }}
     />

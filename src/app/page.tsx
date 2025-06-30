@@ -12,7 +12,9 @@ export default async function HomePage() {
     <section className="px-4 py-6">
       <div className="flex flex-col items-center py-4">
         <Logo className="w-16"></Logo>
-      <header className="text-center text-3xl font-bold">Welcome to your Pokemon World</header>
+        <header className="text-center text-3xl font-bold">
+          Welcome to your Pokemon World
+        </header>
       </div>
       <PokemonGrid pokemonList={pokemonList} />
     </section>

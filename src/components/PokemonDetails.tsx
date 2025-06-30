@@ -6,7 +6,7 @@ import StatProgressBar from "@/components/ui/StatProgressBar";
 
 interface Props {
   pokemon: PokemonData;
-  evolutionNames: string[]; 
+  evolutionNames: string[];
 }
 
 export function PokemonDetails({ pokemon, evolutionNames }: Props) {
@@ -26,7 +26,9 @@ export function PokemonDetails({ pokemon, evolutionNames }: Props) {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className={`bg-gradient-to-br ${cardGradient} p-4 rounded-3xl shadow-2xl border-8 border-yellow-400 max-w-md w-full`}>
+      <div
+        className={`bg-gradient-to-br ${cardGradient} p-4 rounded-3xl shadow-2xl border-8 border-yellow-400 max-w-md w-full`}
+      >
         <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-4 mb-4 shadow-lg border border-white border-opacity-20">
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-3xl font-bold text-gray-800 capitalize">
@@ -35,7 +37,8 @@ export function PokemonDetails({ pokemon, evolutionNames }: Props) {
             <div className="text-right">
               <div className="text-sm text-gray-600">HP</div>
               <div className="text-2xl font-bold text-red-600">
-                {pokemon.stats.find(stat => stat.stat.name === "hp")?.base_stat ?? 0}
+                {pokemon.stats.find((stat) => stat.stat.name === "hp")
+                  ?.base_stat ?? 0}
               </div>
             </div>
           </div>
@@ -63,7 +66,9 @@ export function PokemonDetails({ pokemon, evolutionNames }: Props) {
         </div>
 
         <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-4 mb-4 shadow-lg border border-white border-opacity-20">
-          <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">Evolution Chain</h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">
+            Evolution Chain
+          </h2>
           <div className="flex justify-center gap-4">
             {evolutionNames.map((evo) => (
               <div key={evo} className="flex flex-col items-center">
@@ -74,12 +79,18 @@ export function PokemonDetails({ pokemon, evolutionNames }: Props) {
         </div>
 
         <div className="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-4 mb-4 shadow-lg border border-white border-opacity-20">
-          <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">Base Stats</h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">
+            Base Stats
+          </h2>
           <div className="space-y-3">
             {pokemon.stats.map((stat) => (
               <div key={stat.stat.name} className="flex items-center gap-3">
-                <div className="w-20 text-sm font-semibold text-gray-700 text-right">{stat.stat.name}</div>
-                <div className="w-8 text-sm font-bold text-gray-800 text-center">{stat.base_stat}</div>
+                <div className="w-20 text-sm font-semibold text-gray-700 text-right">
+                  {stat.stat.name}
+                </div>
+                <div className="w-8 text-sm font-bold text-gray-800 text-center">
+                  {stat.base_stat}
+                </div>
                 <div className="flex-1">
                   <StatProgressBar statValue={stat.base_stat} />
                 </div>

@@ -5,24 +5,19 @@ import SearchBar from "@/components/ui/SearchBar";
 import { PokemonCard } from "./pokemon-card";
 import { PokemonData } from "@/types/pokemonTypes";
 
-interface PokemonGridProps {
-  pokemonList: PokemonData[];
-}
-
-export function PokemonGrid({ pokemonList }: PokemonGridProps) {
+export function PokemonGrid({ pokemonList }: { pokemonList: PokemonData[] }) {
   const [searchText, setSearchText] = useState("");
 
- const searchFilter = (pokemonList: PokemonData[]) => {
-  const searchLower = searchText.toLowerCase().trim();
-  const searchAsNumber = Number(searchText);
+  const searchFilter = (list: PokemonData[]) => {
+    const searchWord = searchText.toLowerCase().trim();
+    const searchAsNumber = Number(searchText);
 
-  return pokemonList.filter((pokemon) => {
-    const matchesId = !isNaN(searchAsNumber) && pokemon.id === searchAsNumber;
-    const matchesName = pokemon.name.toLowerCase().includes(searchLower);
-
-    return matchesId || matchesName;
-  });
-};
+    return list.filter((pokemon) => {
+      const matchesId = !isNaN(searchAsNumber) && pokemon.id === searchAsNumber;
+      const matchesName = pokemon.name.toLowerCase().includes(searchWord);
+      return matchesId || matchesName;
+    });
+  };
 
   const filteredPokemonList = searchFilter(pokemonList);
 
@@ -33,9 +28,9 @@ export function PokemonGrid({ pokemonList }: PokemonGridProps) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-        {filteredPokemonList.map((pokemon: PokemonData) => {
-          return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-        })}
+        {filteredPokemonList.map((pokemon) => (
+          <PokemonCard key={pokemon.name} pokemon={pokemon} />
+        ))}
       </div>
     </div>
   );

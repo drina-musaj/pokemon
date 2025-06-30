@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import { PokemonImage } from "@/components/ui/PokemonImage";
-import { PokemonCardProps } from "@/types/pokemonTypes";
+import { PokemonData } from "@/types/pokemonTypes";
 import { useTeam } from "@/context/TeamContext";
 
-export function PokemonCard({ pokemon }: PokemonCardProps) {
+interface Props {
+  pokemon: PokemonData;
+}
+
+export function PokemonCard({ pokemon }: Props) {
   const { isInTeam, toggleTeam } = useTeam();
   const inTeam = isInTeam(pokemon);
 
@@ -13,7 +17,7 @@ export function PokemonCard({ pokemon }: PokemonCardProps) {
     <div className="w-full">
       <article className="hover:animate-background rounded-xl bg-gradient-to-r from-yellow-400 via-red-500 to-blue-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] w-full h-full">
         <div className="w-full h-full rounded-[10px] bg-white p-4 sm:p-6 flex flex-col justify-between min-h-[200px]">
-          <Link href={pokemon.name}>
+          <Link href={`/pokemon/${pokemon.name}`}>
             <div>
               <h2 className="text-base sm:text-lg font-medium text-gray-900 capitalize text-center">
                 {pokemon.name}

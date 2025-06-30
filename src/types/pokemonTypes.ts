@@ -3,7 +3,7 @@ export interface PokemonListItem {
   url: string;
 }
 
-export interface PokemonStats {
+export interface PokemonStat {
   base_stat: number;
   stat: {
     name: string;
@@ -26,20 +26,12 @@ export interface PokemonData {
       };
     };
   };
-  types: PokemonType[]; 
-  stats: PokemonStats[]; 
+  types: PokemonType[];
+  stats: PokemonStat[];
   height: number;
   weight: number;
   species: {
     name: string;
     url: string;
   };
-}
-
-export interface PokemonGridProps {
-  pokemonList: PokemonData[];
-}
-
-export interface PokemonCardProps {
-  pokemon: PokemonData;
 }

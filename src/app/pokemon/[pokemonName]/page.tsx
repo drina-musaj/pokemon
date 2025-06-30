@@ -1,4 +1,8 @@
-import { getPokemon, getPokemonSpecies, getEvolutionChain } from "@/lib/pokemonAPI";
+import {
+  getPokemon,
+  getPokemonSpecies,
+  getEvolutionChain,
+} from "@/lib/pokemonAPI";
 import { PokemonData } from "@/types/pokemonTypes";
 import { PokemonDetails } from "@/components/PokemonDetails";
 
@@ -20,18 +24,19 @@ function getEvolutionNames(chain: any): string[] {
   return names;
 }
 
-export default async function PokemonDetailsPage({ params: { pokemonName } }: Props) {
+export default async function PokemonDetailsPage(props: Props) {
+  const { pokemonName } = props.params;
+
   try {
     const pokemonObject: PokemonData = await getPokemon(pokemonName);
     const pokemonSpecies = await getPokemonSpecies(pokemonObject.species.url);
-    const evolutionChain = await getEvolutionChain(pokemonSpecies.evolution_chain.url);
+    const evolutionChain = await getEvolutionChain(
+      pokemonSpecies.evolution_chain.url,
+    );
     const evolutionNames = getEvolutionNames(evolutionChain);
 
     return (
-      <PokemonDetails
-        pokemon={pokemonObject}
-        evolutionNames={evolutionNames}
-      />
+      <PokemonDetails pokemon={pokemonObject} evolutionNames={evolutionNames} />
     );
   } catch (error) {
     console.error("Error loading Pokemon:", error);

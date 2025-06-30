@@ -44,7 +44,7 @@ export const TeamProvider = ({ children }: { children: ReactNode }) => {
     setTeam((prev) =>
       isInTeam(pokemon)
         ? prev.filter((p) => p.name !== pokemon.name)
-        : [...prev, pokemon]
+        : [...prev, pokemon],
     );
   };
 
