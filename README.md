@@ -1,4 +1,3 @@
-# Next.js + Tailwind CSS + TypeScript Starter and Boilerplate
 
 <div align="center">
   <h2>Pokemon Team </h2>
@@ -26,7 +25,7 @@
  Using `create-next-app`
 
    ```bash
-   npm create next-app  -e https://github.com/theodorusclarence/ts-nextjs-tailwind-starter ts-pnpm
+   npm create next-app  -e https://github.com/drina-musaj/pokemon.git ts-pnpm
    ```
 
    
