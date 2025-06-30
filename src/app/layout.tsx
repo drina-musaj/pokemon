@@ -3,9 +3,10 @@ import * as React from "react";
 import Link from "next/link";
 
 import "@/styles/globals.css";
-import Logo from "~/svg/pokemon-logo.svg";
+import NameLogo from "~/svg/nameLogo.svg";
 import { siteConfig } from "@/constant/config";
 import { TeamProvider } from "@/context/TeamContext";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -35,33 +36,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
+    <html lang="en" className="h-full">
+      <body className="min-h-screen flex flex-col">
         <TeamProvider>
           <header className="bg-white border-b border-gray-200">
-            <div className="max-w-screen-lg mx-auto px-4 py-4 flex justify-between items-center">
+            <div className="max-w-screen-lg mx-auto px-4 py-6 flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <Link
                   href="/"
-                  className="cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-2"
+                  className="cursor-pointer hover:opacity-80 transition-opacity"
                 >
-                  <Logo className="w-16" />
-                  <h1 className="text-2xl font-bold">Pokemon</h1>
+                  <NameLogo className="w-16" />
                 </Link>
               </div>
 
               <nav>
                 <Link
                   href="/my-team"
-                  className="text-blue-600 hover:text-blue-800 font-semibold transition"
+                  className="text-red-600 hover:text-red-800 font-semibold transition"
                 >
-                  My Team
+                  Pòke Team
                 </Link>
               </nav>
             </div>
           </header>
 
-          <main className="bg-white max-w-screen-lg mx-auto">{children}</main>
+          <main className="bg-white max-w-screen-lg mx-auto w-full flex-1">
+            {children}
+          </main>
+
+          <Footer />
         </TeamProvider>
       </body>
     </html>

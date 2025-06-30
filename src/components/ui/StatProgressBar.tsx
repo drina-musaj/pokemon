@@ -17,7 +17,7 @@ const StatProgressBar = ({ statValue }: StatProgressBarProps) => {
         },
         [`& .${linearProgressClasses.bar}`]: {
           borderRadius: 4,
-          backgroundColor:"oklch(44.8% 0.119 151.328)"
+          backgroundColor:"oklch(37.3% 0.034 259.733)"
         },
       }}
     />

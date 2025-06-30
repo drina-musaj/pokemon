@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { PokemonData } from "@/types/pokemonTypes";
 
 type TeamContextType = {
@@ -11,8 +17,25 @@ type TeamContextType = {
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);
 
+const LOCAL_STORAGE_KEY = "pokemon-team";
+
 export const TeamProvider = ({ children }: { children: ReactNode }) => {
   const [team, setTeam] = useState<PokemonData[]>([]);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (stored) {
+        setTeam(JSON.parse(stored));
+      }
+    } catch (err) {
+      console.error("Failed to load team from localStorage:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(team));
+  }, [team]);
 
   const isInTeam = (pokemon: PokemonData) =>
     team.some((p) => p.name === pokemon.name);
@@ -21,7 +44,7 @@ export const TeamProvider = ({ children }: { children: ReactNode }) => {
     setTeam((prev) =>
       isInTeam(pokemon)
         ? prev.filter((p) => p.name !== pokemon.name)
-        : [...prev, pokemon],
+        : [...prev, pokemon]
     );
   };
 

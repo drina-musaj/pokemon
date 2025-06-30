@@ -17,6 +17,7 @@ export function PokemonImage({
 }: PokemonImageProps) {
   return (
     <Image
+      priority
       src={src}
       alt={alt}
       width={width}

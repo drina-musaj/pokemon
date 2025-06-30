@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SearchBar from "@/components/buttons/SearchBar";
+import SearchBar from "@/components/ui/SearchBar";
 import { PokemonCard } from "./pokemon-card";
 import { PokemonData } from "@/types/pokemonTypes";
 
@@ -25,8 +25,6 @@ export function PokemonGrid({ pokemonList }: PokemonGridProps) {
 };
 
   const filteredPokemonList = searchFilter(pokemonList);
-
-  console.log(filteredPokemonList)
 
   return (
     <div>

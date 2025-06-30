@@ -17,7 +17,6 @@ export interface PokemonType {
 }
 
 export interface PokemonData {
-  species: any;
   id: number;
   name: string;
   sprites: {
@@ -31,6 +30,10 @@ export interface PokemonData {
   stats: PokemonStats[]; 
   height: number;
   weight: number;
+  species: {
+    name: string;
+    url: string;
+  };
 }
 
 export interface PokemonGridProps {

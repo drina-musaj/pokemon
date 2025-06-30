@@ -47,10 +47,10 @@ export function PokemonCard({ pokemon }: PokemonCardProps) {
                 e.stopPropagation();
                 toggleTeam(pokemon);
               }}
-              className={`text-white text-sm px-4 py-1 rounded ${
+              className={`text-white text-sm px-4 py-1 rounded-full ${
                 inTeam
                   ? "bg-red-500 hover:bg-red-600"
-                  : "bg-green-500 hover:bg-green-600"
+                  : "bg-yellow-400 hover:bg-yellow-500"
               }`}
             >
               {inTeam ? "Remove from Team" : "Add to Team"}
