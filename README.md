@@ -2,8 +2,8 @@
 
 <div align="center">
   <h2>Pokemon Team </h2>
-  <p>A responsive web app built with **Next.js**, **React**, and **Tailwind CSS** that allows users to browse Pokémon, view their details (including evolutions), and build their own team.
-.</p>
+  <p>A responsive web app built with Next.js, React, and Tailwind CSS that allows users to browse Pokémon, view their details (including evolutions), and build their own team.
+</p>
 
 
 
@@ -11,7 +11,6 @@
 
 ## 🌟 Features
 
-This repository is 🔋 battery packed with:
 
 - 🔍 **Searchable Pokémon Grid** – Browse the first 20 Pokémon by name or ID.
 - 📄 **Pokémon Detail Page** – View detailed stats, types, and evolution chain of a selected Pokémon.
