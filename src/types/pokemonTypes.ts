@@ -16,6 +16,18 @@ export interface PokemonType {
   };
 }
 
+export interface EvolutionChainLink {
+  species: {
+    name: string;
+    url: string;
+  };
+  evolves_to: EvolutionChainLink[];
+}
+
+export interface EvolutionChain {
+  chain: EvolutionChainLink;
+}
+
 export interface PokemonData {
   id: number;
   name: string;

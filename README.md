@@ -1,4 +1,3 @@
-
 <div align="center">
   <h2>Pokemon Team </h2>
   <p>A responsive web app built with Next.js, React, and Tailwind CSS that allows users to browse Pokémon, view their details (including evolutions), and build their own team.
@@ -7,7 +6,6 @@
 </div>
 
 ## 🌟 Features
-
 
 - 🔍 **Searchable Pokémon Grid** – Browse the first 20 Pokémon by name or ID.
 - 📄 **Pokémon Detail Page** – View detailed stats, types, and evolution chain of a selected Pokémon.
@@ -20,11 +18,9 @@
 
 Using `create-next-app`
 
-   ```bash
-   npm create next-app  -e https://github.com/drina-musaj/pokemon.git ts-pnpm
-   ```
-
-   
+```bash
+npm create next-app  -e https://github.com/drina-musaj/pokemon.git ts-pnpm
+```
 
 ### 2. Install dependencies
 

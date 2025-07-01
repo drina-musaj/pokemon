@@ -3,7 +3,7 @@ import {
   getPokemonSpecies,
   getEvolutionChain,
 } from "@/lib/pokemonAPI";
-import { PokemonData } from "@/types/pokemonTypes";
+import { PokemonData, EvolutionChainLink } from "@/types/pokemonTypes";
 import { PokemonDetails } from "@/components/PokemonDetails";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   };
 }
 
-function getEvolutionNames(chain: any): string[] {
+function getEvolutionNames(chain: EvolutionChainLink): string[] {
   const names: string[] = [];
   let current = chain;
 
